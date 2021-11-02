@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VueJs ToDoList</title>
+    <!-- Link Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <!-- Script VueJs -->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="text-center py-3">VueJs ToDoList</h1>
+        </div>
+    </header>
+
+    <main>
+        <!-- VueJs -->
+        <div id="root" class="container">
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="my-3">
+                        <div class="input-group">
+                            <!-- Aggiungi una nuova taskToDo con il button e con il tasto "invio" -->
+                            <input class="form-control" type="text" placeholder="Write here your new task..."
+                                v-model="taskToDo" @keyup.enter="addTaskToDo">
+                            <button class="btn btn-outline-info" type="button" @click="addTaskToDo">Add
+                                task</button>
+                        </div>
+                    </div>
+                    <!-- Ogni nuova taskToDo -->
+                    <div class="list-group my-3">
+                        <div class="list-group-item d-flex align-item-center" v-for="(element, index) in toDoList">
+                            <label class="flex-fill">{{ index + 1 }} ) {{ element }}</label>
+                            <!-- Button per eliminare una taskToDo tramite l'index -->
+                            <button type="button" class="btn-close" aria-label="close"
+                                @click="deleteTask(index)"></button>
+                        </div>
+                    </div>
+                    <!-- Div da mostrare solo se l'array è vuoto -->
+                    <div v-if="toDoList.length === 0">
+                        <h4 class="py-3 text-center">ToDoList is empty, try to add a new task</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Script Js -->
+        <script src="script.js"></script>
+    </footer>
+
+</body>
+
+</html>
